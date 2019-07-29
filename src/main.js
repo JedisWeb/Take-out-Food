@@ -1,15 +1,13 @@
 import Vue from 'vue'
+import router from './router/router.js'
 import App from './App.vue'
 
-import router from './router/router.js'
-import {
-  Tabbar,
-  TabItem,
-  Header
-} from 'mint-ui';
-Vue.component(Tabbar.name, Tabbar);
-Vue.component(TabItem.name, TabItem);
-Vue.component(Header.name, Header)
+import '../static/css/reset.css'
+
+// import {
+//   Search
+// } from 'mint-ui';
+// Vue.component(Search.name, Search);
 
 new Vue({
   el: '#app',
