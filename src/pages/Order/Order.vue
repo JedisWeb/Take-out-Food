@@ -1,6 +1,9 @@
 <template>
-  <div>
-    Order
+  <div class="order-container">
+    <mt-header title="订单">
+      <mt-button icon="search"
+                 slot="right"></mt-button>
+    </mt-header>
   </div>
 </template>
 
@@ -10,4 +13,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// .order-container {
+
+// }
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="search-container">
-    Search
+    <mt-header title="搜索" />
   </div>
 </template>
 

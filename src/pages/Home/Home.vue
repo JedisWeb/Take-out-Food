@@ -1,13 +1,16 @@
 <template>
   <div class="home-container">
-    Home
+
+    <swiper />
   </div>
 </template>
 
 <script>
 
+import swiper from '../../pages/Home/HomeSwiper.vue'
 export default {
   components: {
+    swiper
   }
 }
 </script>

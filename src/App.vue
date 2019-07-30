@@ -1,7 +1,5 @@
 <template>
   <div class="content-container">
-    <!-- <mt-header fixed
-               title="固定在顶部"></mt-header> -->
     <router-view></router-view>
     <Footer></Footer>
   </div>
@@ -17,10 +15,14 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .content-container {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+
+  mt-header {
+    font-size: 18px;
+  }
 }
 </style>

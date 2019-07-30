@@ -1,6 +1,6 @@
 <template>
   <div>
-    Person
+    <mt-header title="个人中心" />
   </div>
 </template>
 
