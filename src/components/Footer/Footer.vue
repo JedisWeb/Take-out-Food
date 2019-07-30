@@ -51,7 +51,7 @@ export default {
 
     span:nth-child(1) {
       display: inline-block;
-      font-size: 18px;
+      font-size: 24px;
       margin: 2px 0px;
     }
 

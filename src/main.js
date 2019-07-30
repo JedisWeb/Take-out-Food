@@ -4,6 +4,9 @@ import App from './App.vue'
 import '../static/css/style.css'
 import '../static/css/reset.css'
 
+import axios from 'axios'
+Vue.prototype.axios = axios
+
 import {
   Header,
   Button,
