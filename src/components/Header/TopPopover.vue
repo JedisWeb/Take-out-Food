@@ -84,7 +84,6 @@ export default {
         }
         a {
           color: #424242;
-
           .iconfont {
             font-size: 20px;
           }

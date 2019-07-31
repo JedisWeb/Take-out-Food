@@ -43,6 +43,10 @@ export default {
   padding: 0 16px;
   text-align: center;
 
+  .iconfont {
+    color: #fff;
+  }
+
   #search {
     height: 50px;
     line-height: 50px;
@@ -61,6 +65,7 @@ export default {
       position: absolute;
       top: 0px;
       left: 12px;
+      color: #424242;
     }
   }
 

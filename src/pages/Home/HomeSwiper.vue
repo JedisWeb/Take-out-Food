@@ -163,6 +163,7 @@ export default {
 
 <style lang="scss" scoped>
 .swiper-container {
+  color: #424242;
   ul {
     display: inline-block;
     width: 100%;
