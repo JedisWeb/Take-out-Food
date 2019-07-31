@@ -43,6 +43,7 @@ export default {
   position: fixed;
   left: 0px;
   bottom: 0px;
+  background-color: #fff;
 
   a {
     flex: 1;

@@ -1,7 +1,7 @@
 {
   "status": 0,
   "message": [{
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -12,7 +12,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -23,7 +23,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -34,7 +34,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -45,7 +45,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -56,7 +56,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -67,7 +67,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -78,7 +78,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -89,7 +89,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,
@@ -100,7 +100,7 @@
       "type": "中式简餐"
     },
     {
-      "img": "../images/shops/1.png",
+      "img": "/images/shops/1.png",
       "name": "聚食汇大虾虾球家常菜（芳草园店）",
       "start": 5,
       "salesNum": 654,

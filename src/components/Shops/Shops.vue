@@ -3,6 +3,8 @@
     <ul>
       <li v-for="(item, index) in shopsList"
           :key="index">
+        <img :src="item.img"
+             alt="">
         <span>{{item.name}}</span>
       </li>
     </ul>
@@ -21,19 +23,18 @@ export default {
   },
   methods: {
     getShopsList () {
-      this.axios.get('api/seller')
+      this.axios.get('/data/shops.json')
         .then(res => {
-          if (res.body.status === 0) {
-            // this.shopsList = res.body.message
-            console.log(res)
+          console.log(res)
+          if (res.data.status === 0) {
+            this.shopsList = res.data.message
           } else {
             mui.toast('数据加载失败', {
               duration: 1000
             })
           }
         }).catch(err => {
-          // console.log(err)
-          alert(err)
+          console.log(err)
         })
     }
   }
@@ -41,4 +42,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  ul {
+    li {
+      img {
+        width: 120px;
+        height: 100px;
+      }
+    }
+  }
+}
 </style>
