@@ -2,23 +2,23 @@
   <div class="home-container">
     <HomeHeader />
     <Swiper />
-    <!-- <HomeCoupon /> -->
+    <HomeCoupon />
     <Shops />
   </div>
 </template>
 
 <script>
 
-import Swiper from '../../pages/Home/HomeSwiper.vue'
 import HomeHeader from '../../pages/Home/HomeHeader.vue'
-// import HomeCoupon from '../../pages/Home/HomeCoupon.vue'
+import Swiper from '../../pages/Home/HomeSwiper.vue'
+import HomeCoupon from '../../pages/Home/HomeCoupon.vue'
 import Shops from '../../components/Shops/Shops.vue'
 
 export default {
   components: {
-    Swiper,
     HomeHeader,
-    // HomeCoupon,
+    Swiper,
+    HomeCoupon,
     Shops
   }
 }
