@@ -44,74 +44,8 @@ import 'swiper/dist/css/swiper.css'
 export default {
   data () {
     return {
-      swiperPage1: [
-        {
-          icon: require("../../../static/images/home-swiper/icon_water ice_colou.png"),
-          content: '美食'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_tea_coloured.png"),
-          content: '外卖'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_rollup_coloured.png"),
-          content: '超市/生鲜'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_sandwich_colour.png"),
-          content: '酒店住宿'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_salad_coloured.png"),
-          content: '民宿/公寓'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_pizza_coloured.png"),
-          content: '摩拜'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_noodle_coloured.png"),
-          content: '火车票/机票'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_milk_coloured.png"),
-          content: '电影/演出'
-        }
-      ],
-      swiperPage2: [
-        {
-          icon: require("../../../static/images/home-swiper/icon_lobster_coloure.png"),
-          content: '休闲娱乐'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_kebabs_coloured.png"),
-          content: '红包签到'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_juice_coloured.png"),
-          content: '健身/游泳'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_doughnut_colour.png"),
-          content: '免费领水果'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_icecream_colour.png"),
-          content: '免费领福利'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_hotdog_coloured.png"),
-          content: '周边游/游泳'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_fries_coloured.png"),
-          content: '景点/门票'
-        },
-        {
-          icon: require("../../../static/images/home-swiper/icon_drumsticks_colo.png"),
-          content: '手机充值'
-        }
-      ],
+      swiperPage1: [],
+      swiperPage2: [],
       swiperPage3: [
         {
           icon: require("../../../static/images/home-swiper/icon_cupcake_coloure.png"),
@@ -146,6 +80,30 @@ export default {
           content: '医疗/牙科'
         }
       ]
+    }
+  },
+  created () {
+    this.getPage()
+    // let str = this.swiperPage3.reduce((pre, cur) => pre + cur))
+    //   console.log(str)
+  },
+  methods: {
+    getPage () {
+      this.axios.get('/data/swiperPage1.json').then(res => {
+        this.swiperPage1 = res.data.message
+      })
+        .catch(err => {
+        })
+      this.axios.get('/data/swiperPage2.json').then(res => {
+        this.swiperPage2 = res.data.message
+      })
+        .catch(err => {
+        })
+      this.axios.get('/data/swiperPage3.json').then(res => {
+        this.swiperPage3 = res.data.message
+      })
+        .catch(err => {
+        })
     }
   },
   mounted () {

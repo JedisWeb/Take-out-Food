@@ -1,0 +1,36 @@
+{
+  "status": 0,
+  "message": [{
+      "icon": "/images/home-swiper/icon_lobster_coloure.png",
+      "content": "休闲娱乐"
+    },
+    {
+      "icon": "/images/home-swiper/icon_kebabs_coloured.png",
+      "content": "红包签到"
+    },
+    {
+      "icon": "/images/home-swiper/icon_juice_coloured.png",
+      "content": "健身/游泳"
+    },
+    {
+      "icon": "/images/home-swiper/icon_doughnut_colour.png",
+      "content": "免费领水果"
+    },
+    {
+      "icon": "/images/home-swiper/icon_icecream_colour.png",
+      "content": "免费领福利"
+    },
+    {
+      "icon": "/images/home-swiper/icon_hotdog_coloured.png",
+      "content": "周边游/游泳"
+    },
+    {
+      "icon": "/images/home-swiper/icon_fries_coloured.png",
+      "content": "景点/门票"
+    },
+    {
+      "icon": "/images/home-swiper/icon_drumsticks_colo.png",
+      "content": "手机充值"
+    }
+  ]
+}

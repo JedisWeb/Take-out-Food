@@ -1,9 +1,18 @@
 <template>
   <div class="shops-container">
-    <ul class="mui-table-view">
-      <li v-for="(shop, index) in shopsList"
-          :key="index"
-          class="mui-table-view-cell">
+    <!-- <mt-spinner type="fading-circle"></mt-spinner> -->
+    <!-- <mt-loadmore :top-method="loadTop"
+                 @top-status-change="handleTopChange"
+                 :bottom-method="loadBottom"
+                 @bottom-status-change="handleBottomChange"
+                 :auto-fill="false"
+                 ref="loadmore"> -->
+    <ul class="mui-table-view mui-iframe-wrapper">
+      <router-link to="/home"
+                   tag="li"
+                   v-for="(shop, index) in shopsList"
+                   :key="index"
+                   class="mui-table-view-cell">
         <div class="img">
           <img :src="shop.img"
                alt=""
@@ -41,8 +50,9 @@
           <div class="take-out"
                v-if="shop.takeOut"><span class="icon">外</span>外卖配送</div>
         </div>
-      </li>
+      </router-link>
     </ul>
+    </mt-loadmore>
   </div>
 </template>
 
@@ -51,7 +61,8 @@
 export default {
   data () {
     return {
-      shopsList: []
+      shopsList: [],
+      loading: false
     }
   },
   created () {
@@ -91,6 +102,30 @@ export default {
         }
       }
       return false;
+    },
+    handleTopChange (status) {
+      this.loading = status
+    },
+    loadTop () {
+      this.handleTopChange('loading')
+      this.getShopsList()
+      setTimeout(() => {
+        this.$refs.loadmore.onTopLoaded();
+        this.loading = false
+      }, 1000)
+      // console.log(this.shopsList)
+    },
+    handleBottomChange (status) {
+      this.allLoaded = status
+    },
+    loadBottom () {
+      this.handleTopChange('loading')
+      this.getShopsList()
+      setTimeout(() => {
+        this.$refs.loadmore.onBottomLoaded();
+        this.allLoaded = false;// 若数据已全部获取完毕
+      }, 1000)
+      // console.log(this.shopsList)
     }
   }
 }
@@ -98,12 +133,14 @@ export default {
 
 <style lang="scss" scoped>
 .shops-container {
+  height: 100%;
   width: 100%;
   color: #424242;
   ul {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding-bottom: 40px;
 
     li {
       padding: 20px 15px;
@@ -120,6 +157,7 @@ export default {
         bottom: 0px;
         left: 0px;
       }
+
       .img {
         flex: 1;
         display: flex;

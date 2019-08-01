@@ -3,7 +3,8 @@
     <HomeHeader />
     <Swiper />
     <HomeCoupon />
-    <Shops />
+    <Dropdown />
+    <ShopsList />
   </div>
 </template>
 
@@ -12,14 +13,16 @@
 import HomeHeader from '../../pages/Home/HomeHeader.vue'
 import Swiper from '../../pages/Home/HomeSwiper.vue'
 import HomeCoupon from '../../pages/Home/HomeCoupon.vue'
-import Shops from '../../components/Shops/Shops.vue'
+import Dropdown from '../../components/Shops/ShopDropdown.vue'
+import ShopsList from '../../components/Shops/ShopsList.vue'
 
 export default {
   components: {
     HomeHeader,
     Swiper,
     HomeCoupon,
-    Shops
+    Dropdown,
+    ShopsList
   }
 }
 </script>
