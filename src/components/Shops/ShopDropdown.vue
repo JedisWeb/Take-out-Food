@@ -3,7 +3,8 @@
     <!-- 全部美食 -->
     <el-dropdown size="small"
                  @command="handleAllFoods"
-                 :hide-on-click="true">
+                 :hide-on-click="false"
+                 @visible-change="hidden">
       <span class="el-dropdown-link">
         {{ allFoodsValue }}
         <i class="el-icon-arrow-down el-icon--right"></i>
@@ -21,7 +22,7 @@
                  @command="handleNearby"
                  :hide-on-click="false">
       <span class="el-dropdown-link">
-        全城
+        {{ nearbyValue }}
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
@@ -38,7 +39,7 @@
     <!-- 离我最近 -->
     <el-dropdown size="small"
                  @command="handleSord"
-                 :hide-on-click="true">
+                 :hide-on-click="false">
       <span class="el-dropdown-link">
         {{ sortValue }}
         <i class="el-icon-arrow-down el-icon--right"></i>
@@ -56,8 +57,7 @@
     <el-dropdown size="small"
                  @command="handleScreen"
                  :hide-on-click="false">
-      <span class="
-                 el-dropdown-link">
+      <span class="el-dropdown-link">
         筛选
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
@@ -65,23 +65,48 @@
                         class="screen">
         <li>
           <span>只看免预约</span>
-          <mt-switch></mt-switch>
+          <div class="mui-switch mui-switch-blue mui-switch-mini">
+            <div class="mui-switch-handle"></div>
+          </div>
         </li>
         <li>
           <span>节假日可用</span>
-          <mt-switch></mt-switch>
+          <div class="mui-switch mui-switch-blue mui-switch-mini">
+            <div class="mui-switch-handle"></div>
+          </div>
         </li>
         <li>
           <span>只看新片</span>
-          <mt-switch></mt-switch>
+          <div class="mui-switch mui-switch-blue mui-switch-mini">
+            <div class="mui-switch-handle"></div>
+          </div>
         </li>
-        <li>
+        <li class="card number">
+          <div>用餐人数</div>
+          <ul>
+            <li>单人餐</li>
+            <li>双人餐</li>
+            <li>3-4人餐</li>
+            <li>5-10人餐</li>
+            <li>10人以上</li>
+          </ul>
         </li>
-        <li></li>
+        <li class="card service">
+          <div>餐厅服务</div>
+          <ul>
+            <li>买单</li>
+            <li>外卖送餐</li>
+            <li>订座</li>
+            <li>在线排除</li>
+          </ul>
+        </li>
         <li>
           <mt-button type="default"
-                     plain>重置</mt-button>
+                     size="small"
+                     plain
+                     @click="reset">重置</mt-button>
           <mt-button type="primary"
+                     size="small"
                      plain>完成</mt-button>
         </li>
       </el-dropdown-menu>
@@ -127,6 +152,7 @@ export default {
         { title: '蒙餐', num: 2 },
         { title: '徽菜', num: 1 },
         { title: '东南亚菜', num: 1 }],
+      nearbyValue: '全城',
       nearbyList: [
         {
           label: '附近',
@@ -265,16 +291,41 @@ export default {
       screenList: [],
     };
   },
+  mounted () {
+    this.addClickListener()
+  },
   methods: {
+    addClickListener () {
+      $('.card > ul').on('click', (e) => {
+        e = e || window.event
+        let target = e.target || e.srcElement
+        if ($(target).hasClass('is-active')) {
+          $(target).removeClass('is-active')
+        } else {
+          $(target).addClass('is-active')
+        }
+      })
+
+    },
     handleAllFoods (command) {
       this.allFoodsValue = command;
     },
-    handleNearby (command) { },
+    handleNearby (command) {
+      this.nearbyValue = command
+    },
     handleSord (command) {
       this.sortValue = command;
     },
     handleScreen (command) {
 
+    },
+    reset () {
+      $('.mui-active').removeClass('mui-active')
+      $('.card>ul>li.is-active').removeClass('is-active')
+    },
+    hidden (e) {
+      console.log(e)
+      return false
     }
   }
 }
@@ -285,35 +336,67 @@ export default {
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
+  position: relative;
 }
 
 .el-dropdown-menu {
-  position: fixed;
-  left: 0;
-  top: 300px;
+  position: absolute;
+  left: 0 !important;
   width: 100%;
-  max-height: 300px;
+  max-height: 400px;
   color: #424242;
   overflow: auto;
 
   .el-dropdown-menu__item {
     height: 30px;
     line-height: 30px;
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
 .el-dropdown-menu.screen {
+  padding: 10px 20px;
   li {
-    height: 32px;
-    line-height: 32px;
     margin-bottom: 15px;
+  }
+  li:not(.card) {
+    height: 20px;
+    line-height: 20px;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    position: relative;
 
     .mint-button {
       flex: 1;
+    }
+  }
+
+  li.card {
+    div {
+      color: #aaa;
+    }
+
+    ul {
+      padding-top: 10px;
+      li {
+        display: inline-block;
+        height: 30px;
+        // float: left;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 4px;
+        margin: 6px;
+
+        &.is-active {
+          color: #fff;
+          background-color: #66b1ff;
+          border: 1px solid #66b1ff;
+        }
+      }
+      &::after {
+        content: "";
+        clear: both;
+      }
     }
   }
 }

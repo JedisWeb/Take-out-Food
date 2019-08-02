@@ -1,8 +1,8 @@
 <template>
   <div class="search-container">
     <!-- <mt-header title="搜索" /> -->
-    <Dropdown />
-    <ShopsList />
+    <!-- <Dropdown />
+    <ShopsList /> -->
   </div>
 </template>
 

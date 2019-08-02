@@ -59,6 +59,7 @@ export default {
       display: inline-block;
       border-radius: 10px;
       text-indent: 1em;
+      font-size: 14px;
     }
 
     .search-icon {

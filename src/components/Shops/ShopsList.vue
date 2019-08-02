@@ -1,20 +1,12 @@
 <template>
   <div class="shops-container">
-    <el-backtop target=".mui-table-view"
-                :visibility-height="1000"
-                :right="100"
-                :bottom="100">
-      <span>UP</span>
-    </el-backtop>
     <ul class="mui-table-view">
-      <li class="mint-loadmore-top"
-          slot="top"></li>
       <mt-loadmore :top-method="loadTop"
                    :bottom-method="loadBottom"
                    :bottomAllLoaded="allLoaded"
                    :auto-fill="false"
                    ref="loadmore">
-        <router-link to="/home"
+        <router-link :to="'/home/shopslist/' + index"
                      tag="li"
                      v-for="(shop, index) in shopsList"
                      :key="index"
@@ -167,6 +159,7 @@ export default {
         img {
           width: 80px;
           height: 70px;
+          margin: 0 auto;
           margin-bottom: 20px;
         }
 

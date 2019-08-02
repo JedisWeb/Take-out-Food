@@ -17,6 +17,7 @@ import {
   Lazyload,
   Switch,
   Loadmore,
+  CellSwipe,
 } from 'mint-ui';
 
 Vue.component(Header.name, Header);
@@ -24,6 +25,7 @@ Vue.component(Button.name, Button);
 Vue.use(Lazyload)
 Vue.component(Switch.name, Switch);
 Vue.component(Loadmore.name, Loadmore);
+Vue.component(CellSwipe.name, CellSwipe);
 
 import bootstrap from 'bootstrap'
 Vue.use(bootstrap)
