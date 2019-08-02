@@ -1,59 +1,66 @@
 <template>
   <div class="shops-container">
-    <!-- <mt-spinner type="fading-circle"></mt-spinner> -->
-    <!-- <mt-loadmore :top-method="loadTop"
-                 @top-status-change="handleTopChange"
-                 :bottom-method="loadBottom"
-                 @bottom-status-change="handleBottomChange"
-                 :auto-fill="false"
-                 ref="loadmore"> -->
-    <ul class="mui-table-view mui-iframe-wrapper">
-      <router-link to="/home"
-                   tag="li"
-                   v-for="(shop, index) in shopsList"
-                   :key="index"
-                   class="mui-table-view-cell">
-        <div class="img">
-          <img :src="shop.img"
-               alt=""
-               v-lazy.shops-container="shop.img">
-          <div v-if="isOpen(shop)"
-               class="open">
-            <span class="iconfont iconfonted"></span>
-            <span>营业中</span>
+    <el-backtop target=".mui-table-view"
+                :visibility-height="1000"
+                :right="100"
+                :bottom="100">
+      <span>UP</span>
+    </el-backtop>
+    <ul class="mui-table-view">
+      <li class="mint-loadmore-top"
+          slot="top"></li>
+      <mt-loadmore :top-method="loadTop"
+                   :bottom-method="loadBottom"
+                   :bottomAllLoaded="allLoaded"
+                   :auto-fill="false"
+                   ref="loadmore">
+        <router-link to="/home"
+                     tag="li"
+                     v-for="(shop, index) in shopsList"
+                     :key="index"
+                     class="mui-table-view-cell">
+          <div class="img">
+            <img :src="shop.img"
+                 alt=""
+                 v-lazy.shops-container="shop.img">
+            <div v-if="isOpen(shop)"
+                 class="open">
+              <span class="iconfont iconfonted"></span>
+              <span>营业中</span>
+            </div>
+            <div v-else
+                 class="close">
+              <span class="iconfont iconfonted1"></span>
+              <span>休息中</span>
+            </div>
           </div>
-          <div v-else
-               class="close">
-            <span class="iconfont iconfonted1"></span>
-            <span>休息中</span>
+          <div class="info">
+            <h1 class="name">{{shop.name}}</h1>
+            <div class="star">
+              <el-rate v-model="shop.star"
+                       disabled
+                       show-score
+                       text-color="#ff9900"
+                       score-template="{value}">
+              </el-rate>
+              <span class="perCons">￥{{ shop.perCons }}/人</span>
+            </div>
+            <div class="address">
+              <span class="area">{{ shop.area }}</span>
+              <span class="type">{{ shop.type }}</span>
+              <span class="distance">{{ shop.distance }}km</span>
+            </div>
+            <div class="tuan"><span class="icon">团</span><span>{{ shop.tuan }}</span></div>
+            <div class="coupon"
+                 v-if="shop.coupon != ''"><span class="icon">券</span><span>{{ shop.coupon }}</span></div>
+            <div class="take-out"
+                 v-if="shop.takeOut"><span class="icon">外</span>外卖配送</div>
           </div>
-        </div>
-        <div class="info">
-          <h1 class="name">{{shop.name}}</h1>
-          <div class="star">
-            <el-rate v-model="shop.star"
-                     disabled
-                     show-score
-                     text-color="#ff9900"
-                     score-template="{value}">
-            </el-rate>
-            <span class="perCons">￥{{ shop.perCons }}/人</span>
-          </div>
-          <div class="address">
-            <span class="area">{{ shop.area }}</span>
-            <span class="type">{{ shop.type }}</span>
-            <span class="distance">{{ shop.distance }}km</span>
-          </div>
-          <div class="tuan"><span class="icon">团</span><span>{{ shop.tuan }}</span></div>
-          <div class="coupon"
-               v-if="shop.coupon != ''"><span class="icon">券</span><span>{{ shop.coupon }}</span></div>
-          <div class="take-out"
-               v-if="shop.takeOut"><span class="icon">外</span>外卖配送</div>
-        </div>
-      </router-link>
+        </router-link>
+      </mt-loadmore>
     </ul>
-    </mt-loadmore>
   </div>
+
 </template>
 
 <script>
@@ -62,7 +69,7 @@ export default {
   data () {
     return {
       shopsList: [],
-      loading: false
+      allLoaded: false
     }
   },
   created () {
@@ -74,7 +81,8 @@ export default {
         .then(res => {
           // console.log(res)
           if (res.data.status === 0) {
-            this.shopsList = res.data.message
+            this.shopsList = this.shopsList.concat(res.data.message)
+            console.log(this.shopsList.length)
           } else {
             mui.toast('数据加载失败', {
               duration: 1000
@@ -103,29 +111,18 @@ export default {
       }
       return false;
     },
-    handleTopChange (status) {
-      this.loading = status
-    },
     loadTop () {
-      this.handleTopChange('loading')
-      this.getShopsList()
       setTimeout(() => {
-        this.$refs.loadmore.onTopLoaded();
-        this.loading = false
-      }, 1000)
-      // console.log(this.shopsList)
-    },
-    handleBottomChange (status) {
-      this.allLoaded = status
+        this.getShopsList()
+        this.$refs.loadmore.onTopLoaded();//结束加载
+      }, 1500)
     },
     loadBottom () {
-      this.handleTopChange('loading')
-      this.getShopsList()
       setTimeout(() => {
-        this.$refs.loadmore.onBottomLoaded();
-        this.allLoaded = false;// 若数据已全部获取完毕
-      }, 1000)
-      // console.log(this.shopsList)
+        this.getShopsList()
+        this.allLoaded = true;// 若数据已全部获取完毕
+        this.$refs.loadmore.onBottomLoaded();//结束加载
+      }, 1500)
     }
   }
 }
@@ -136,6 +133,7 @@ export default {
   height: 100%;
   width: 100%;
   color: #424242;
+
   ul {
     overflow: hidden;
     white-space: nowrap;

@@ -1,5 +1,6 @@
 <template>
   <div class="shop-dropdowns-container">
+    <!-- 全部美食 -->
     <el-dropdown size="small"
                  @command="handleAllFoods"
                  :hide-on-click="true">
@@ -15,9 +16,10 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
+    <!-- 全城 -->
     <el-dropdown size="small"
                  @command="handleNearby"
-                 :hide-on-click="true">
+                 :hide-on-click="false">
       <span class="el-dropdown-link">
         全城
         <i class="el-icon-arrow-down el-icon--right"></i>
@@ -28,9 +30,12 @@
                      placeholder="试试搜索:"
                      filterable
                      clearable
-                     size="mini"></el-cascader>
+                     size="mini"
+                     :hide-on-click="false"></el-cascader>
       </el-dropdown-menu>
     </el-dropdown>
+
+    <!-- 离我最近 -->
     <el-dropdown size="small"
                  @command="handleSord"
                  :hide-on-click="true">
@@ -46,38 +51,39 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
+
+    <!-- 筛选 -->
     <el-dropdown size="small"
-                 @command="handleScreen">
-      <span class="el-dropdown-link">
+                 @command="handleScreen"
+                 :hide-on-click="false">
+      <span class="
+                 el-dropdown-link">
         筛选
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
-      <el-dropdown-menu slot="dropdown">
-        <ul>
-          <li>
-            <span>只看免预约</span>
-            <mt-switch></mt-switch>
-          </li>
-          <li>
-            <span>节假日可用</span>
-            <mt-switch></mt-switch>
-          </li>
-          <li>
-            <span>只看新片</span>
-            <mt-switch></mt-switch>
-          </li>
-          <li>
-
-          </li>
-          <li></li>
-          <li>
-            <mt-button type="default"
-                       size="normal">重置</mt-button>
-            <mt-button type="primary"
-                       plain>完成</mt-button>
-          </li>
-
-        </ul>
+      <el-dropdown-menu slot="dropdown"
+                        class="screen">
+        <li>
+          <span>只看免预约</span>
+          <mt-switch></mt-switch>
+        </li>
+        <li>
+          <span>节假日可用</span>
+          <mt-switch></mt-switch>
+        </li>
+        <li>
+          <span>只看新片</span>
+          <mt-switch></mt-switch>
+        </li>
+        <li>
+        </li>
+        <li></li>
+        <li>
+          <mt-button type="default"
+                     plain>重置</mt-button>
+          <mt-button type="primary"
+                     plain>完成</mt-button>
+        </li>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -121,8 +127,6 @@ export default {
         { title: '蒙餐', num: 2 },
         { title: '徽菜', num: 1 },
         { title: '东南亚菜', num: 1 }],
-
-
       nearbyList: [
         {
           label: '附近',
@@ -280,10 +284,37 @@ export default {
 .shop-dropdowns-container {
   display: flex;
   justify-content: space-around;
+  padding: 10px 0;
+}
 
-  &.el-dropdown-menu {
-    width: 500px;
-    height: 300px;
+.el-dropdown-menu {
+  position: fixed;
+  left: 0;
+  top: 300px;
+  width: 100%;
+  max-height: 300px;
+  color: #424242;
+  overflow: auto;
+
+  .el-dropdown-menu__item {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+  }
+}
+
+.el-dropdown-menu.screen {
+  li {
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    .mint-button {
+      flex: 1;
+    }
   }
 }
 </style>

@@ -14,22 +14,16 @@ Vue.prototype.axios = axios
 import {
   Header,
   Button,
-  Search,
   Lazyload,
-  CellSwipe,
   Switch,
   Loadmore,
-  Spinner
 } from 'mint-ui';
 
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);
-Vue.component(Search.name, Search);
 Vue.use(Lazyload)
-Vue.component(CellSwipe.name, CellSwipe);
 Vue.component(Switch.name, Switch);
 Vue.component(Loadmore.name, Loadmore);
-Vue.component(Spinner.name, Spinner);
 
 import bootstrap from 'bootstrap'
 Vue.use(bootstrap)
