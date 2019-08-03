@@ -3,6 +3,9 @@ import router from './router/router.js'
 import App from './App.vue'
 import '../static/css/style.css'
 import '../static/css/reset.css'
+import '../static/css/mui.icons-extra.css'
+import '../static/js/mui.zoom.js'
+import '../static/js/mui.previewimage.js'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui';
@@ -18,6 +21,9 @@ import {
   Switch,
   Loadmore,
   CellSwipe,
+  Navbar,
+  TabItem,
+  Actionsheet
 } from 'mint-ui';
 
 Vue.component(Header.name, Header);
@@ -26,9 +32,12 @@ Vue.use(Lazyload)
 Vue.component(Switch.name, Switch);
 Vue.component(Loadmore.name, Loadmore);
 Vue.component(CellSwipe.name, CellSwipe);
+Vue.component(Navbar.name, Navbar);
+Vue.component(TabItem.name, TabItem);
+Vue.component(Actionsheet.name, Actionsheet);
 
-import bootstrap from 'bootstrap'
-Vue.use(bootstrap)
+// import bootstrap from 'bootstrap'
+// Vue.use(bootstrap)
 
 new Vue({
   el: '#app',

@@ -5,6 +5,10 @@
   /* touch-action: none; */
 }
 
+p {
+  color: #424242;
+}
+
 /* .mint-header-title {
   font-size: 18px;
   color: #fff;

@@ -19,14 +19,41 @@
        id="right"
        href="#topPopover"></a>
     <!-- 扫一扫弹出框 -->
-    <TopPopover />
+    <TopPopover :popoverList="list" />
   </div>
 
 </template>
 
 <script>
+
 import TopPopover from '../../components/Header/TopPopover.vue'
 export default {
+  data () {
+    return {
+      list: [
+        {
+          icon: 'iconfont iconfontsaoyisao',
+          content: '扫一扫'
+        },
+        {
+          icon: 'iconfont iconfontfukuanma',
+          content: '付款码'
+        },
+        {
+          icon: 'iconfont iconfontea',
+          content: '开发票'
+        },
+        {
+          icon: 'iconfont iconfonthuochepiao',
+          content: '火车票'
+        },
+        {
+          icon: 'iconfont iconfontjipiao',
+          content: '机票'
+        }
+      ]
+    }
+  },
   components: {
     TopPopover
   }
@@ -40,7 +67,7 @@ export default {
   line-height: 50px;
   background-color: #007aff;
   color: #fff;
-  padding: 0 16px;
+  padding: 0 20px;
   text-align: center;
 
   .iconfont {

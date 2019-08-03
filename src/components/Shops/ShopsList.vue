@@ -6,7 +6,7 @@
                    :bottomAllLoaded="allLoaded"
                    :auto-fill="false"
                    ref="loadmore">
-        <router-link :to="'/home/shopslist/' + index"
+        <router-link :to="'/home/shopslist/' + shop.id"
                      tag="li"
                      v-for="(shop, index) in shopsList"
                      :key="index"
@@ -15,16 +15,7 @@
             <img :src="shop.img"
                  alt=""
                  v-lazy.shops-container="shop.img">
-            <div v-if="isOpen(shop)"
-                 class="open">
-              <span class="iconfont iconfonted"></span>
-              <span>营业中</span>
-            </div>
-            <div v-else
-                 class="close">
-              <span class="iconfont iconfonted1"></span>
-              <span>休息中</span>
-            </div>
+            <BusinessStatus :shop="shop" />
           </div>
           <div class="info">
             <h1 class="name">{{shop.name}}</h1>
@@ -56,7 +47,7 @@
 </template>
 
 <script>
-
+import BusinessStatus from '../BusinessStatus'
 export default {
   data () {
     return {
@@ -66,6 +57,9 @@ export default {
   },
   created () {
     this.getShopsList()
+  },
+  components: {
+    BusinessStatus
   },
   methods: {
     getShopsList () {
@@ -83,25 +77,6 @@ export default {
         }).catch(err => {
           // console.log(err)
         })
-    },
-    isOpen (shop) {
-      let am = this.split(shop.openTime.am)
-      let pm = this.split(shop.openTime.pm)
-      return this.isScope(am) || this.isScope(pm)
-    },
-    split (str) {
-      return str.split('-').map(item => item.split(':'));
-    },
-    isScope (arr) {
-      let firstTime = arr[0]
-      let lastTime = arr[1]
-      let date = new Date()
-      if (date.getHours() >= firstTime[0] && date.getHours() <= lastTime[0]) {
-        if (date.getMinutes() > firstTime[1] || date.getMinutes() < lastTime[1]) {
-          return true
-        }
-      }
-      return false;
     },
     loadTop () {
       setTimeout(() => {
@@ -161,16 +136,6 @@ export default {
           height: 70px;
           margin: 0 auto;
           margin-bottom: 20px;
-        }
-
-        .open {
-          display: inline-block;
-          text-align: center;
-          color: #007aff;
-        }
-
-        .close {
-          color: #ccc;
         }
       }
 

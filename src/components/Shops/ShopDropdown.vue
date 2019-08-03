@@ -3,7 +3,7 @@
     <!-- 全部美食 -->
     <el-dropdown size="small"
                  @command="handleAllFoods"
-                 :hide-on-click="false"
+                 :hide-on-click="true"
                  @visible-change="hidden">
       <span class="el-dropdown-link">
         {{ allFoodsValue }}
@@ -39,7 +39,7 @@
     <!-- 离我最近 -->
     <el-dropdown size="small"
                  @command="handleSord"
-                 :hide-on-click="false">
+                 :hide-on-click="true">
       <span class="el-dropdown-link">
         {{ sortValue }}
         <i class="el-icon-arrow-down el-icon--right"></i>
@@ -116,6 +116,9 @@
 </template>
 
 <script>
+mui.init({
+  swipeBack: true //启用右滑关闭功能
+});
 export default {
   data () {
     return {
@@ -339,6 +342,10 @@ export default {
   position: relative;
 }
 
+el-dropdown-link {
+  position: relative;
+}
+
 .el-dropdown-menu {
   position: absolute;
   left: 0 !important;
@@ -359,7 +366,7 @@ export default {
   li {
     margin-bottom: 15px;
   }
-  li:not(.card) {
+  & > li:not(.card) {
     height: 20px;
     line-height: 20px;
     display: flex;
@@ -380,11 +387,10 @@ export default {
       padding-top: 10px;
       li {
         display: inline-block;
-        height: 30px;
         // float: left;
         border: 1px solid #ccc;
         border-radius: 3px;
-        padding: 4px;
+        padding: 6px;
         margin: 6px;
 
         &.is-active {

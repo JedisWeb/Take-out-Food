@@ -1,68 +1,48 @@
-<template>
+<template id="temp">
   <div id="topPopover"
        class="mui-popover">
     <div class="mui-popover-arrow"></div>
     <div class="mui-scroll-wrapper">
       <ul>
-        <li>
+        <li v-for="(popover, index) in list"
+            :key="index">
           <a href="javascript:void(0)">
-            <span class="iconfont iconfontsaoyisao"></span>
-            <span class="label-content">扫一扫</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">
-            <span class="iconfont iconfontfukuanma"></span>
-            <span class="label-content">付款码</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">
-            <span class="iconfont iconfontea"></span>
-            <span class="label-content">开发票</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">
-            <span class="iconfont iconfonthuochepiao"></span>
-            <span class="label-content">火车票</span>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">
-            <span class="iconfont iconfontjipiao"></span>
-            <span class="label-content">机票</span>
+            <span :class="popover.icon"></span>
+            <span class="label-content">{{ popover.content }}</span>
           </a>
         </li>
       </ul>
-
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
-
+  props: ['popoverList'],
+  data () {
+    return {
+      list: this.popoverList
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 #topPopover {
-  position: fixed;
-  top: 56px !important;
+  position: absolute;
+  top: 50px !important;
   right: 20px;
-  width: 120px;
+  width: 130px;
   height: 186px;
 
   .mui-popover-arrow {
-    top: -25px;
-    right: 20px;
+    left: 87px !important;
   }
 
   .mui-scroll-wrapper {
     margin: 0;
     text-align: center;
+
     ul {
       display: inline-block;
       li {
@@ -71,7 +51,7 @@ export default {
         text-align: left;
         font-size: 18px;
         position: relative;
-        margin: 6px 14px;
+        margin: 6px 0px;
 
         &:not(:last-child)::after {
           content: "";

@@ -23,6 +23,13 @@ export default {
     HomeCoupon,
     Dropdown,
     ShopsList
+  },
+  created () {
+    let str = ''
+    for (let i = 1; i <= 17; i++) {
+      str += "\"/images/shops/10/10." + i + ".png\"" + ",\n"
+    }
+    console.log(str)
   }
 }
 </script>
