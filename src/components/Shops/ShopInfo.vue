@@ -55,27 +55,29 @@
           </el-image>
         </p>
       </div>
-      <p class="address">
+      <p class="position">
         <span class="iconfont iconfonte1 gps"></span>
-        {{ shop.address }}
+        <span class="address">
+          {{ shop.address }}
+          <span class="distance">
+
+            距您{{ shop.distance }}km
+          </span>
+        </span>
         <span class="iconfont iconfontdianhua tel"></span>
       </p>
     </div>
-
     <div class="navbar">
-      <el-tabs v-model="activeName"
-               @tab-click="handleClick">
+      <el-tabs v-model="activeNavName">
         <el-tab-pane label="优惠信息">
-          <ul>
-            <li v-for="n in 100"
-                :key="n">---1----{{ n }}</li>
-          </ul>
+          <div v-if="shop.coupon.length !== 0">
+            <h1>代金券</h1>
+            <Coupon :shop="shop.coupon" />
+          </div>
+          <h1>到店吃套餐</h1>
+          <SetMenu />
         </el-tab-pane>
         <el-tab-pane label="用户评论">
-          <ul>
-            <li v-for="n in 100"
-                :key="n">---2----{{ n }}</li>
-          </ul>
         </el-tab-pane>
         <el-tab-pane label="商家信息">
           <ul>
@@ -89,8 +91,14 @@
 </template>
 
 <script>
+// 查问弹出菜单
 import TopPopover from '../../components/Header/TopPopover.vue'
+// 营业状态
 import BusinessStatus from '../BusinessStatus.vue'
+// 代金券
+import Coupon from '../CouponComp.vue'
+// 套餐
+import SetMenu from './ShopSetMenu.vue'
 export default {
   data () {
     return {
@@ -134,40 +142,41 @@ export default {
         {
           name: '朋友圈',
           method () {
-            // console.log('微信好友')
+            // console.log('朋友圈')
           }
         },
         {
           name: 'QQ',
           method () {
-            // console.log('微信好友')
+            // console.log('QQ')
           }
         },
         {
           name: 'QQ空间',
           method () {
-            // console.log('微信好友')
+            // console.log('QQ空间')
           }
         },
         {
           name: '新浪微博',
           method () {
-            // console.log('微信好友')
+            // console.log('新浪微博')
           }
         },
         {
           name: '复制',
           method () {
-            // console.log('微信好友')
+            // console.log('复制')
           }
         },
         {
-          name: '事多',
+          name: '更多',
           method () {
-            // console.log('微信好友')
+            // console.log('更多')
           }
         }
-      ]
+      ],
+      activeNavName: ''
     }
   },
   created () {
@@ -176,7 +185,9 @@ export default {
   },
   components: {
     TopPopover,
-    BusinessStatus
+    BusinessStatus,
+    Coupon,
+    SetMenu
   },
   methods: {
     getShop () {
@@ -201,6 +212,7 @@ export default {
 
 <style lang="scss" scoped>
 .shopinfo-container {
+  padding-bottom: 50px;
   .header {
     width: 100%;
     height: 50px;
@@ -267,19 +279,42 @@ export default {
       }
     }
 
-    .address {
+    .position {
       margin-top: 5px;
+      display: flex;
+      .address {
+        margin-right: 20px;
+        line-height: 20px;
+        .distance {
+          margin-left: 10px;
+          color: #ccc;
+        }
+      }
       .tel {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 24px;
+        margin-right: 10px;
+        flex: 1;
         float: right;
       }
     }
   }
 
   .navbar {
-    .el-tabs__nav-wrap {
-      display: flex;
-      .el-tabs__item {
-        flex: 1;
+    .el-tabs__header {
+      .el-tabs__nav-wrap {
+        display: flex;
+        .el-tabs__item {
+          flex: 1;
+        }
+      }
+    }
+    .el-tabs__content {
+      .el-tab-pane {
+        padding: 10px;
       }
     }
   }

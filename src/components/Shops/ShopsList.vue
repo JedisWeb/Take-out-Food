@@ -33,9 +33,13 @@
               <span class="type">{{ shop.type }}</span>
               <span class="distance">{{ shop.distance }}km</span>
             </div>
-            <div class="tuan"><span class="icon">团</span><span>{{ shop.tuan }}</span></div>
+            <div class="tuan"><span class="icon">团</span><span>{{ shop.tuan[0].title }} &nbsp; {{ shop.tuan[1].title }}</span></div>
             <div class="coupon"
-                 v-if="shop.coupon != ''"><span class="icon">券</span><span>{{ shop.coupon }}</span></div>
+                 v-if="shop.coupon != ''">
+              <span class="icon">券</span>
+              <span v-for="(item, index) in shop.coupon"
+                    :key="index">{{ item }} &nbsp;</span>
+            </div>
             <div class="take-out"
                  v-if="shop.takeOut"><span class="icon">外</span>外卖配送</div>
           </div>
@@ -100,12 +104,12 @@ export default {
   height: 100%;
   width: 100%;
   color: #424242;
+  padding-bottom: 40px;
 
   ul {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding-bottom: 40px;
 
     li {
       padding: 20px 15px;
