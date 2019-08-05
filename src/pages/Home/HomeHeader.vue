@@ -1,32 +1,39 @@
 <template>
-  <div class="container">
-    <!-- Logo -->
-    <span class="iconfont iconfontwaimai"
-          slot="left"
-          id="left"></span>
-    <!-- 搜索框 -->
-    <div class="mui-input-row mui-search"
-         id="search">
-      <input type="text"
-             class="mui-input-clear"
-             placeholder="张记黄焖鸡(外卖满20减2)"
-             disabled>
-      <span class="iconfont iconfontsousuo search-icon"></span>
-    </div>
-    <!-- 扫一扫 -->
-    <a class="iconfont iconfontjia"
-       slot="right"
-       id="right"
-       href="#topPopover"></a>
-    <!-- 扫一扫弹出框 -->
-    <TopPopover :popoverList="list" />
+  <div class="header-container">
+    <Search>
+      <!-- Logo -->
+      <span class="iconfont iconfontwaimai"
+            id="left"
+            slot="left"></span>
+      <!-- <span id="left"
+            slot="left">襄阳</span> -->
+      <!-- 搜索框 -->
+      <span slot="center"
+            id="search">
+        <input type="text"
+               class="mui-input-clear"
+               placeholder="张记黄焖鸡(外卖满20减2)"
+               disabled>
+        <span class="iconfont iconfontsousuo search-icon"></span>
+      </span>
+      <!-- 扫一扫 -->
+      <span slot="right">
+        <a class="iconfont iconfontjia"
+           id="right"
+           href="#topPopover"></a>
+        <!-- 扫一扫弹出框 -->
+        <TopPopover :popoverList="list" />
+
+      </span>
+    </Search>
   </div>
 
 </template>
 
 <script>
 
-import TopPopover from '../../components/Header/TopPopover.vue'
+import TopPopover from '../../components/Header/HeaderTopPopover.vue'
+import Search from '../../components/Header/HeaderSearch.vue'
 export default {
   data () {
     return {
@@ -55,20 +62,25 @@ export default {
     }
   },
   components: {
+    Search,
     TopPopover
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
+.header-container {
   width: 100%;
   height: 50px;
   line-height: 50px;
   background-color: #007aff;
   color: #fff;
-  padding: 0 20px;
   text-align: center;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
 
   .iconfont {
     color: #fff;
@@ -79,6 +91,7 @@ export default {
     line-height: 50px;
     display: inline-block;
     color: #424242;
+    position: relative;
 
     input {
       height: 30px;
@@ -87,6 +100,9 @@ export default {
       border-radius: 10px;
       text-indent: 1em;
       font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .search-icon {
@@ -94,16 +110,17 @@ export default {
       top: 0px;
       left: 12px;
       color: #424242;
+      font-size: 14px;
     }
   }
 
   #left {
-    font-size: 34px;
+    font-size: 26px;
     float: left;
   }
   #right {
     float: right;
-    font-size: 28px;
+    font-size: 26px;
     color: #fff;
   }
 }

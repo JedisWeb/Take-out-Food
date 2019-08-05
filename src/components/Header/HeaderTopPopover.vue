@@ -36,7 +36,7 @@ export default {
   height: 186px;
 
   .mui-popover-arrow {
-    left: 87px !important;
+    left: 97px !important;
   }
 
   .mui-scroll-wrapper {

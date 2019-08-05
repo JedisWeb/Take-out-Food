@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .order-container {
-
-// }
+.order-container {
+  padding: 0 0 50px 0;
+}
 </style>

@@ -72,7 +72,7 @@ export default {
           // console.log(res)
           if (res.data.status === 0) {
             this.shopsList = this.shopsList.concat(res.data.message)
-            console.log(this.shopsList.length)
+            console.log('List.length:' + this.shopsList.length)
           } else {
             mui.toast('数据加载失败', {
               duration: 1000
@@ -104,7 +104,6 @@ export default {
   height: 100%;
   width: 100%;
   color: #424242;
-  padding-bottom: 40px;
 
   ul {
     overflow: hidden;
@@ -112,7 +111,7 @@ export default {
     text-overflow: ellipsis;
 
     li {
-      padding: 20px 15px;
+      padding: 15px 10px;
       display: flex;
       position: relative;
 
@@ -184,6 +183,7 @@ export default {
           font-size: 16px;
           height: 20px;
           line-height: 20px;
+          color: #888;
 
           & > * {
             flex: 1;
@@ -206,6 +206,7 @@ export default {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          font-size: 14px;
 
           .icon {
             background-color: #007aff;
@@ -216,6 +217,7 @@ export default {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          font-size: 14px;
 
           .icon {
             background-color: #f40;
@@ -223,6 +225,7 @@ export default {
         }
 
         .take-out {
+          font-size: 14px;
           .icon {
             background-color: orange;
           }

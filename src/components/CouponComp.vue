@@ -1,5 +1,6 @@
 <template>
   <div class="coucom-container">
+    <!-- <h1>代金券</h1> -->
     <ul>
       <li v-for="(item, index) in list"
           :key="index">
@@ -13,7 +14,7 @@
           </p>
           <p>
             <span class="price">￥{{ item[0] }}</span>
-            <span class="discount">{{ item | count }}折</span>
+            <span class="discount">{{ item | handleDiscount }}折</span>
           </p>
         </div>
         <div class="right">
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+
 export default {
   props: ['shop'],
   data () {
@@ -40,29 +42,23 @@ export default {
     this.s.map((item) => {
       this.list.push(item.match(reg))
     })
-    console.log(this.list)
-  },
-  filters: {
-    count (i) {
-      console.log(i)
-      return Math.floor(i[0] / i[1] * 100)
-    }
+    // console.log(this.list)
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .coucom-container {
-  margin: 15px 0px;
   ul {
     li {
       border-radius: 8px;
-      border: 1px solid #ec0;
-      background-color: rgba(256, 256, 172, 0.5);
       position: relative;
       display: flex;
-      padding: 10px 20px;
       margin: 10px 0px;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0px 0px 10px #ccc;
       .left {
         flex: 1;
 

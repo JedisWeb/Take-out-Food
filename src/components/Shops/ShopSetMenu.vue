@@ -1,5 +1,6 @@
 <template>
   <div class="setmenu-container">
+    <h1>到店吃套餐</h1>
     <ul>
       <li class="mui-table-view-cell"
           v-for="(item, index) in tuan"
@@ -16,11 +17,11 @@
           </p>
           <p class="explain">
             <span>{{ item.explain }}</span>
-            <span v-if="item.appoinment">&nbsp;|&nbsp;免预约</span>
+            <span v-if="!item.appoinment">&nbsp;|&nbsp;免预约</span>
           </p>
           <p class="price">
             <span class="new-price">￥{{ item.nowPrice }}</span>
-            <span class="discount">{{ item.nowPrice/item.originalPrice*100 }}折</span>
+            <span class="discount">{{ [item.nowPrice,item.originalPrice] | handleDiscount }}折</span>
             <span class="original-price">￥{{ item.originalPrice }}</span>
           </p>
           <p></p>
@@ -38,9 +39,9 @@
 export default {
   data () {
     return {
+      id: this.$route.params.id,
       shop: {},
-      tuan: []
-      // id:this.$routes.params.id
+      tuan: [],
     }
   },
   created () {
@@ -50,7 +51,7 @@ export default {
     getShop () {
       this.axios.get('/data/shops.json').then(res => {
         if (res.data.status === 0) {
-          this.shop = res.data.message[8]
+          this.shop = res.data.message[this.id]
           this.tuan = this.shop.tuan
         } else {
           mui.toast('数据加载失败', {
@@ -68,6 +69,11 @@ export default {
 <style lang="scss" scoped>
 .setmenu-container {
   width: 100%;
+  padding: 10px 10px 0 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #ccc;
   ul {
     li {
       display: flex;
@@ -75,7 +81,6 @@ export default {
       padding: 15px 0;
 
       &:not(:last-child)::after {
-        // &::after {
         content: "";
         clear: both;
         width: 100%;
@@ -94,7 +99,7 @@ export default {
       }
 
       .content {
-        width: 190px;
+        width: 180px;
         & > :not(:last-child) {
           margin-bottom: 4px;
         }
@@ -107,19 +112,23 @@ export default {
         .foods {
           span {
             color: #888;
-            font-size: 14px;
+            font-size: 12px;
           }
         }
 
         .explain {
           span {
             color: #888;
-            font-size: 14px;
+            font-size: 12px;
           }
         }
 
         .price {
           height: 20px;
+          line-height: 20px;
+          vertical-align: middle;
+          display: flex;
+          flex-flow: row nowrap;
           .new-price {
             color: #ec0;
             font-weight: 600;
@@ -127,23 +136,26 @@ export default {
           }
 
           .discount {
+            height: 14px;
+            line-height: 14px;
             border: 1px solid #ec2;
             color: #ec2;
-            padding: 1px 3px;
-            margin: 0 10px;
+            padding: 1px 2px;
+            margin: 2px 5px;
             font-size: 10px;
+            text-align: center;
           }
 
           .original-price {
             text-decoration: line-through;
             color: #888;
-            font-size: 14px;
+            font-size: 12px;
           }
         }
       }
 
       .buy {
-        width: 80px;
+        width: 70px;
         text-align: center;
         button {
           background-color: #ec2;
@@ -154,7 +166,7 @@ export default {
           border: none;
         }
         .half-year-sell {
-          font-size: 14px;
+          font-size: 12px;
           color: #888;
           text-align: center;
         }

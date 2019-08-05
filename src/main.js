@@ -20,9 +20,9 @@ import {
   Lazyload,
   Switch,
   Loadmore,
-  CellSwipe,
-  Navbar,
-  TabItem,
+  // CellSwipe,
+  // Navbar,
+  // TabItem,
   Actionsheet
 } from 'mint-ui';
 
@@ -31,13 +31,17 @@ Vue.component(Button.name, Button);
 Vue.use(Lazyload)
 Vue.component(Switch.name, Switch);
 Vue.component(Loadmore.name, Loadmore);
-Vue.component(CellSwipe.name, CellSwipe);
-Vue.component(Navbar.name, Navbar);
-Vue.component(TabItem.name, TabItem);
+// Vue.component(CellSwipe.name, CellSwipe);
+// Vue.component(Navbar.name, Navbar);
+// Vue.component(TabItem.name, TabItem);
 Vue.component(Actionsheet.name, Actionsheet);
 
 // import bootstrap from 'bootstrap'
 // Vue.use(bootstrap)
+
+Vue.filter('handleDiscount', value => {
+  return Math.floor(value[0] / value[1] * 100)
+})
 
 new Vue({
   el: '#app',

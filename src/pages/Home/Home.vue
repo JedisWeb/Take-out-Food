@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <HomeHeader />
-    <Swiper />
+    <Slider />
     <HomeCoupon />
     <!-- <Dropdown /> -->
     <ShopsList />
@@ -11,17 +11,17 @@
 <script>
 
 import HomeHeader from '../../pages/Home/HomeHeader.vue'
-import Swiper from '../../pages/Home/HomeSwiper.vue'
+import Slider from '../../pages/Home/HomeSlider.vue'
 import HomeCoupon from '../../pages/Home/HomeCoupon.vue'
-import Dropdown from '../../components/Shops/ShopDropdown.vue'
+// import Dropdown from '../../components/Shops/ShopDropdown.vue'
 import ShopsList from '../../components/Shops/ShopsList.vue'
 
 export default {
   components: {
     HomeHeader,
-    Swiper,
+    Slider,
     HomeCoupon,
-    Dropdown,
+    // Dropdown,
     ShopsList
   },
   created () {
@@ -31,7 +31,6 @@ export default {
 
 <style lang="scss" scoped>
 .home-container {
-  width: 100%;
-  height: 100%;
+  padding: 50px 0;
 }
 </style>

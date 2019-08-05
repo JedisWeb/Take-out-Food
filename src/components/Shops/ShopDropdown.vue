@@ -327,7 +327,7 @@ export default {
       $('.card>ul>li.is-active').removeClass('is-active')
     },
     hidden (e) {
-      console.log(e)
+      // console.log(e)
       return false
     }
   }

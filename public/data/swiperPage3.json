@@ -1,36 +1,36 @@
 {
   "status": 0,
   "message": [{
-      "icon": "/images/home-swiper/icon_water ice_colou.png",
-      "content": "美食"
+      "icon": "/images/home-swiper/icon_egg_coloured.png",
+      "content": "丽人/秀发"
     },
     {
-      "icon": "/images/home-swiper/icon_tea_coloured.png",
-      "content": "外卖"
+      "icon": "/images/home-swiper/icon_cupcake_coloure.png",
+      "content": "医学美容"
     },
     {
-      "icon": "/images/home-swiper/icon_rollup_coloured.png",
-      "content": "超市/生鲜"
+      "icon": "/images/home-swiper/icon_crab_coloured.png",
+      "content": "亲子/乐园"
     },
     {
-      "icon": "/images/home-swiper/icon_sandwich_colour.png",
-      "content": "酒店住宿"
+      "icon": "/images/home-swiper/icon_coffee_coloured.png",
+      "content": "结婚/摄影"
     },
     {
-      "icon": "/images/home-swiper/icon_salad_coloured.png",
-      "content": "民宿/公寓"
+      "icon": "/images/home-swiper/icon_cake_coloured.png",
+      "content": "学习培训"
     },
     {
-      "icon": "/images/home-swiper/icon_pizza_coloured.png",
-      "content": "摩拜"
+      "icon": "/images/home-swiper/icon_burger_coloured.png",
+      "content": "生活服务"
     },
     {
-      "icon": "/images/home-swiper/icon_noodle_coloured.png",
-      "content": "火车票/机票"
+      "icon": "/images/home-swiper/icon_bread_coloured.png",
+      "content": "家居/装修"
     },
     {
-      "icon": "/images/home-swiper/icon_milk_coloured.png",
-      "content": "电影/演出"
+      "icon": "/images/home-swiper/icon_beer_coloured.png",
+      "content": "医疗/牙科"
     }
   ]
 }
