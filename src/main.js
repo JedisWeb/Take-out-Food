@@ -20,10 +20,13 @@ import {
   Lazyload,
   Switch,
   Loadmore,
-  // CellSwipe,
-  // Navbar,
-  // TabItem,
-  Actionsheet
+  Actionsheet,
+  Cell,
+  Navbar,
+  TabItem,
+  TabContainer,
+  TabContainerItem,
+  Badge,
 } from 'mint-ui';
 
 Vue.component(Header.name, Header);
@@ -31,10 +34,13 @@ Vue.component(Button.name, Button);
 Vue.use(Lazyload)
 Vue.component(Switch.name, Switch);
 Vue.component(Loadmore.name, Loadmore);
-// Vue.component(CellSwipe.name, CellSwipe);
-// Vue.component(Navbar.name, Navbar);
-// Vue.component(TabItem.name, TabItem);
 Vue.component(Actionsheet.name, Actionsheet);
+Vue.component(Cell.name, Cell);
+Vue.component(Navbar.name, Navbar);
+Vue.component(TabItem.name, TabItem);
+Vue.component(TabContainer.name, TabContainer);
+Vue.component(TabContainerItem.name, TabContainerItem);
+Vue.component(Badge.name, Badge);
 
 // import bootstrap from 'bootstrap'
 // Vue.use(bootstrap)

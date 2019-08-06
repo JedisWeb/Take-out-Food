@@ -3,7 +3,8 @@
     <a @click="$router.back(-1)"
        class="iconfont iconfontjiantou-zuo left"
        slot="left"></a>
-    <h1 slot="center"></h1>
+    <h1 slot="center"
+        class="header-name"></h1>
     <span slot="right"
           class="right">
       <a class="iconfont iconfontfenxiang share"
@@ -26,12 +27,15 @@
 </template>
 
 <script>
+
 import Header from '../Header/HeaderSearch.vue'
 // 查问弹出菜单
 import TopPopover from '../../components/Header/HeaderTopPopover.vue'
 export default {
+  props: ['name'],
   data () {
     return {
+      n: this.name,
       isCol: false,
       isShare: false,
       list: [
@@ -106,6 +110,21 @@ export default {
       ],
     }
   },
+  created () {
+    $(window).scroll(() => {
+      if ($(window).scrollTop() >= 50) {
+        $('.header-container').css({
+          "background-color": "#fff"
+        })
+        $('.header-name').text(this.n)
+      } else {
+        $('.header-container').css({
+          "background-color": "transparent"
+        })
+        $('.header-name').text('')
+      }
+    })
+  },
   components: {
     Header,
     TopPopover,
@@ -135,16 +154,18 @@ export default {
     color: #007aff;
   }
 
-  a {
-    color: #424242;
+  .iconfont {
     margin: 0 5px;
     font-size: 20px;
   }
 
   h1 {
     flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 50px;
   }
-
   #topPopover {
     height: 220px;
   }

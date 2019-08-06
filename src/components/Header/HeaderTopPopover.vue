@@ -55,11 +55,11 @@ export default {
 
         &:not(:last-child)::after {
           content: "";
-          width: 100px;
+          width: 100%;
           height: 1px;
           position: absolute;
           top: 33px;
-          left: -8px;
+          left: 0px;
           background-color: #ccc;
         }
         a {

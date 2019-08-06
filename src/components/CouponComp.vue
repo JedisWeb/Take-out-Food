@@ -1,5 +1,5 @@
 <template>
-  <div class="coucom-container">
+  <div class="coupon-container">
     <!-- <h1>代金券</h1> -->
     <ul>
       <li v-for="(item, index) in list"
@@ -48,17 +48,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.coucom-container {
+.coupon-container {
+  margin: 0 10px;
   ul {
     li {
-      border-radius: 8px;
       position: relative;
       display: flex;
       margin: 10px 0px;
       background-color: #fff;
       border-radius: 10px;
       padding: 10px;
-      box-shadow: 0px 0px 10px #ccc;
+      box-shadow: 0px 0px 5px #aaa;
       .left {
         flex: 1;
 
@@ -82,10 +82,12 @@ export default {
 
         .discount {
           border: 1px solid #ec2;
+          border-radius: 14px;
           color: #ec2;
           padding: 3px;
           margin-left: 10px;
           font-size: 12px;
+          // background-color: #f40;
         }
       }
       .right {

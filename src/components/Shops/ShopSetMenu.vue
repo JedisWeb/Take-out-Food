@@ -68,12 +68,16 @@ export default {
 
 <style lang="scss" scoped>
 .setmenu-container {
-  width: 100%;
-  padding: 10px 10px 0 10px;
-  margin-bottom: 10px;
+  padding: 20px 0px 10px;
+  margin: 10px;
+  // margin-bottom: 10px;
   border-radius: 10px;
   background-color: #fff;
-  box-shadow: 0px 0px 10px #ccc;
+  box-shadow: 0px 0px 5px #aaa;
+
+  h1 {
+    margin-left: 10px;
+  }
   ul {
     li {
       display: flex;
@@ -91,7 +95,7 @@ export default {
         left: 0px;
       }
       .img {
-        margin-right: 10px;
+        margin: 0px 10px;
         img {
           width: 90px;
           height: 80px;
@@ -157,6 +161,7 @@ export default {
       .buy {
         width: 70px;
         text-align: center;
+        margin-right: 10px;
         button {
           background-color: #ec2;
           color: #fff;

@@ -1,7 +1,8 @@
 <template>
   <div class="shopinfo-container">
-    <Header />
-
+    <Header :name="shop.name" />
+    <img :src="shop.img"
+         class="bg-img">
     <div class="shop">
       <div class="name">{{ shop.name }}</div>
       <div class="info">
@@ -30,7 +31,7 @@
           </p>
           <p class="time">
             <BusinessStatus :shop="shop"></BusinessStatus>
-            <span>&nbsp;&nbsp;{{ shop.openTime.am }}&nbsp;&nbsp;</span>
+            <span>&nbsp;{{ shop.openTime.am }}&nbsp;</span>
 
             <span>{{ shop.openTime.pm }}</span>
           </p>
@@ -47,28 +48,28 @@
         <span class="iconfont iconfontdianhua tel"></span>
       </p>
     </div>
-    <img :src="shop.img"
-         class="bg-img">
-    <div class="navbar">
-      <el-tabs v-model="activeNavName">
-        <el-tab-pane label="优惠信息">
-          <div v-if="shop.coupon.length !== 0">
-            <Coupon :shop="shop.coupon" />
-          </div>
-          <div v-if="shop.tuan.length !== 0">
-            <SetMenu />
-          </div>
-        </el-tab-pane>
-        <el-tab-pane label="用户评论">
-        </el-tab-pane>
-        <el-tab-pane label="商家信息">
-          <ul>
-            <li v-for="n in 100"
-                :key="n">---3----{{ n }}</li>
-          </ul>
-        </el-tab-pane>
-      </el-tabs>
+    <div>
+      <p id="navbar">
+        <a class="is-active"
+           href="#prefrencetial">优惠</a>
+        <a href="#recommend">菜品</a>
+        <a href="#comment">评价</a>
+      </p>
     </div>
+    <div id="prefrencetial">
+      <Coupon v-if="shop.coupon.length !== 0"
+              :shop="shop.coupon" />
+      <SetMenu v-if="shop.tuan.length !== 0" />
+    </div>
+    <div id="recommend">
+      <Recommend />
+    </div>
+    <div id="comment">
+      <Comment :num="shop.commentNum" />
+      <Question />
+    </div>
+    <Nearby />
+    <MoreShop />
   </div>
 </template>
 
@@ -80,6 +81,16 @@ import BusinessStatus from '../BusinessStatus.vue'
 import Coupon from '../CouponComp.vue'
 // 套餐
 import SetMenu from './ShopSetMenu.vue'
+// 推荐菜
+import Recommend from './ShopRecommend.vue'
+// 餐厅评价
+import Comment from './ShopComment.vue'
+// 问答
+import Question from './ShopQuestion.vue'
+// 附近吃喝玩乐
+import Nearby from './ShopNearby.vue'
+// 更多商家
+import MoreShop from './ShopMore.vue'
 export default {
   data () {
     return {
@@ -90,20 +101,36 @@ export default {
   },
   created () {
     this.getShop()
-    // $(.header.star).
+  },
+  mounted () {
+    $('#navbar>a').on('click', e => {
+      console.log(e)
+      e = e || window.event
+      let target = e.target || e.srcElement
+      console.log(target)
+      if (target.hasClass('is-active')) {
+        // target.removeClass('is-active')
+      } else {
+        target.addClass('is-active')
+      }
+    })
   },
   components: {
     Header,
     BusinessStatus,
     Coupon,
-    SetMenu
+    SetMenu,
+    Recommend,
+    Comment,
+    Question,
+    Nearby,
+    MoreShop,
   },
   methods: {
     getShop () {
       this.axios.get('/data/shops.json').then(res => {
         if (res.data.status === 0) {
           this.shop = res.data.message[this.id]
-          // console.log(this.shop)
         }
       }).catch(err => {
 
@@ -115,14 +142,24 @@ export default {
 
 <style lang="scss" scoped>
 .shopinfo-container {
-  padding: 50px 0;
+  padding: 50px 0px;
+
+  .bg-img {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: -150px;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+  }
 
   .shop {
     padding: 10px;
     margin: 0 10px;
     border-radius: 10px;
     background-color: #fff;
-    box-shadow: 0px 0px 10px #ccc;
+    box-shadow: 0px 0px 10px #aaa;
 
     .name {
       font-size: 20px;
@@ -175,6 +212,7 @@ export default {
       .address {
         flex: 1;
         line-height: 20px;
+        font-size: 14px;
         .distance {
           margin-left: 10px;
           color: #ccc;
@@ -190,26 +228,24 @@ export default {
     }
   }
 
-  .bg-img {
-    width: 100%;
-    height: 50%;
-    position: absolute;
-    top: -150px;
-    left: 0;
-    opacity: 0.1;
-    z-index: -1;
-  }
-
-  .navbar {
-    .el-tabs__header {
-      margin: -15px !important;
+  #navbar {
+    margin: 20px 0;
+    a {
+      font-size: 18px;
+      margin: 0 10px;
+      position: relative;
     }
-    .el-tabs__content {
-      padding: 10px;
-      border-radius: 10px;
-      background-color: #fff;
-      .el-tab-pane {
-        padding: 0 10px;
+    .is-active {
+      color: #f40;
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        left: 0px;
+        width: 100%;
+        height: 1px;
+        background-color: #f40;
       }
     }
   }

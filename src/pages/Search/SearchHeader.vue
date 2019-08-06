@@ -27,8 +27,8 @@ export default {
     Search,
   },
   created () {
-    $(window).scrollTop(100)
-    console.log($(window).scrollTop())
+    // $(window).scrollTop(100)
+    // console.log($(window).scrollTop())
     // console.log('000000000000')
   }
 }
